@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import Heading from '../../components/Heading';
 import Spinner from '../../components/Spinner';
 import ItemUl from '../../components/ItemUl';
 import Button from '../../components/Button';
@@ -40,7 +41,7 @@ const MeetupDetails = props => {
 
   const renderButtons = () => (
     <div>
-      <ButtonLink to={`${EDIT_MEETUP_LINK}/${id}`} className={DARK_GREEN_2}>
+      <ButtonLink to={`${EDIT_MEETUP_LINK}/${id}`} cls={DARK_GREEN_2}>
         Edit
       </ButtonLink>
       <Button cls={'red darken-2 right'}>Delete</Button>
@@ -53,9 +54,15 @@ const MeetupDetails = props => {
     return (
       <div>
         <ul className="collection">
-          <ItemUl>{`Name: ${name}`}</ItemUl>
-          <ItemUl>{`Address: ${address}`}</ItemUl>
-          <ItemUl>{`City: ${city}`}</ItemUl>
+          <ItemUl>
+            <b>Name:</b> {name}
+          </ItemUl>
+          <ItemUl>
+            <b>Address:</b> {address}
+          </ItemUl>
+          <ItemUl>
+            <b>City:</b> {city}
+          </ItemUl>
         </ul>
         {renderButtons()}
       </div>
@@ -64,7 +71,7 @@ const MeetupDetails = props => {
 
   return (
     <div>
-      <h1>Meetup Details</h1>
+      <Heading>Meetup Details</Heading>
       {renderDetails()}
     </div>
   );

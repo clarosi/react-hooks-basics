@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Navlink from '../Navlink';
+import ButtonLink from '../ButtonLink';
 import { DARK_GREEN_2 } from '../../shared/string/meterialCls';
 import { MEETUP, ADD_MEETUP, ABOUT } from '../../shared/string/menuText';
 import {
@@ -19,9 +20,12 @@ const BUTTON_CLS = 'btn-floating';
 const FloatingButton = () => {
   return (
     <div className="fixed-action-btn">
-      <a href="/" className="btn-floating btn-large blue darken-2">
-        <i className="large material-icons">Edit</i>
-      </a>
+      <ButtonLink
+        to={ADD_MEETUP_LINK}
+        className="btn-floating btn-large blue darken-2"
+      >
+        <i className="large fa fa-plus" />
+      </ButtonLink>
       <ul>
         <li>
           <Navlink

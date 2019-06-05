@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import Heading from '../../components/Heading';
 import Spinner from '../../components/Spinner';
 import MeetupItems from '../../components/MeetupItems';
 
@@ -41,7 +42,7 @@ const Meetups = () => {
 
   return (
     <div>
-      <h1>{count} Meetups</h1>
+      <Heading>{count} Meetups</Heading>
       <ul className={loading ? null : 'collection'}>{renderMeetups()}</ul>
     </div>
   );

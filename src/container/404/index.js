@@ -1,8 +1,10 @@
 import React from 'react';
 
+import Heading from '../../components/Heading';
+
 const NotFound = () => (
   <div>
-    <h1>Page Not Found.</h1>
+    <Heading>Page Not Found.</Heading>
   </div>
 );
 
