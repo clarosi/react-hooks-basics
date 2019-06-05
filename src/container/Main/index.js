@@ -5,6 +5,7 @@ import Meetups from '../Meetups';
 import AddMeetups from '../AddMeetups';
 import MeetupDetails from '../MeetupDetails';
 import About from '../About';
+import NotFound from '../404';
 import {
   MEETUP_LINK,
   ADD_MEETUP_LINK,
@@ -19,6 +20,7 @@ const Main = () => (
       <Route path={ADD_MEETUP_LINK} component={AddMeetups} />
       <Route path={`${VIEW_MEETUP_LINK}/:id`} component={MeetupDetails} />
       <Route path={ABOUT_LINK} component={About} />
+      <Route component={NotFound} />
     </Switch>
   </main>
 );

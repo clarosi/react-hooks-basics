@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Navlink from '../Navlink';
+import { DARK_GREEN_2 } from '../../shared/string/meterialCls';
 import { MEETUP, ADD_MEETUP, ABOUT } from '../../shared/string/menuText';
 import {
   MEETUP_ICON,
@@ -13,19 +14,19 @@ import {
   ABOUT_LINK
 } from '../../shared/string/menuLinks';
 
-const BUTTON_CLS = 'btn-floating green darken-2';
+const BUTTON_CLS = 'btn-floating';
 
 const FloatingButton = () => {
   return (
     <div className="fixed-action-btn">
-      <a href="/" className="btn-floating btn-large blue darken-3">
+      <a href="/" className="btn-floating btn-large blue darken-2">
         <i className="large material-icons">Edit</i>
       </a>
       <ul>
         <li>
           <Navlink
             to={MEETUP_LINK}
-            cls={BUTTON_CLS}
+            cls={`${BUTTON_CLS} ${DARK_GREEN_2}`}
             icon={MEETUP_ICON}
             text={MEETUP}
           />
@@ -33,7 +34,7 @@ const FloatingButton = () => {
         <li>
           <Navlink
             to={ADD_MEETUP_LINK}
-            cls={BUTTON_CLS}
+            cls={`${BUTTON_CLS} ${DARK_GREEN_2}`}
             icon={ADD_MEETUP_ICON}
             text={ADD_MEETUP}
           />
@@ -41,7 +42,7 @@ const FloatingButton = () => {
         <li>
           <Navlink
             to={ABOUT_LINK}
-            cls={BUTTON_CLS}
+            cls={`${BUTTON_CLS} ${DARK_GREEN_2}`}
             icon={ABOUT_ICON}
             text={ABOUT}
           />

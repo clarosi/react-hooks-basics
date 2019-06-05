@@ -2,10 +2,17 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import Spinner from '../../components/Spinner';
+import ItemUl from '../../components/ItemUl';
+import Button from '../../components/Button';
+import ButtonLink from '../../components/ButtonLink';
+import { DARK_GREEN_2 } from '../../shared/string/meterialCls';
+import { EDIT_MEETUP_LINK } from '../../shared/string/menuLinks';
 
 const MeetupDetails = props => {
   const [details, setDetails] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const { id } = props.match.params;
 
   // This is componentDidMount() or componentDidUpdate() in class component.
   // Only re-run the useEffect if details changes and you pass [details] as second params.
@@ -22,9 +29,8 @@ const MeetupDetails = props => {
   // });
 
   const getMeetupDetails = () => {
-    const { match } = props;
     axios
-      .get(`http://localhost:3000/api/meetups/${match.params.id}`)
+      .get(`http://localhost:3000/api/meetups/${id}`)
       .then(res => {
         setDetails(res.data);
         setLoading(false);
@@ -32,21 +38,34 @@ const MeetupDetails = props => {
       .catch(err => console.log(err));
   };
 
+  const renderButtons = () => (
+    <div>
+      <ButtonLink to={`${EDIT_MEETUP_LINK}/${id}`} className={DARK_GREEN_2}>
+        Edit
+      </ButtonLink>
+      <Button cls={'red darken-2 right'}>Delete</Button>
+    </div>
+  );
+
   const renderDetails = () => {
     const { name, address, city } = details;
+    if (loading) return <Spinner size={'large'} />;
     return (
-      <ul className="collection">
-        <li className="collection-item">{`Name: ${name}`}</li>
-        <li className="collection-item">{`Address: ${address}`}</li>
-        <li className="collection-item">{`City: ${city}`}</li>
-      </ul>
+      <div>
+        <ul className="collection">
+          <ItemUl>{`Name: ${name}`}</ItemUl>
+          <ItemUl>{`Address: ${address}`}</ItemUl>
+          <ItemUl>{`City: ${city}`}</ItemUl>
+        </ul>
+        {renderButtons()}
+      </div>
     );
   };
 
   return (
     <div>
       <h1>Meetup Details</h1>
-      {loading ? <Spinner size={'large'} /> : renderDetails()}
+      {renderDetails()}
     </div>
   );
 };

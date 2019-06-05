@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Navlink from '../Navlink';
+import { DARK_GREEN_2 } from '../../shared/string/meterialCls';
 import { MEETUP, ADD_MEETUP, ABOUT } from '../../shared/string/menuText';
 import {
   MEETUP_ICON,
@@ -16,7 +17,7 @@ import {
 const Navbar = () => {
   return (
     <div>
-      <nav className="green darken-2">
+      <nav className={DARK_GREEN_2}>
         <div className="nav-wrapper">
           <a
             href="/"

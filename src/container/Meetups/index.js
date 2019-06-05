@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import Spinner from '../../components/Spinner';
-import MeetupItem from '../../components/MeetupItem';
+import MeetupItems from '../../components/MeetupItems';
 
 const Meetups = () => {
   const [meetups, setMeetups] = useState([]);
@@ -34,16 +34,15 @@ const Meetups = () => {
       .catch(err => console.log(err));
   };
 
+  const renderMeetups = () => {
+    if (loading) return <Spinner size={'large'} />;
+    return <MeetupItems meetups={meetups} />;
+  };
+
   return (
     <div>
       <h1>{count} Meetups</h1>
-      <ul className={loading ? null : 'collection'}>
-        {loading ? (
-          <Spinner size={'large'} />
-        ) : (
-          <MeetupItem meetups={meetups} />
-        )}
-      </ul>
+      <ul className={loading ? null : 'collection'}>{renderMeetups()}</ul>
     </div>
   );
 };
