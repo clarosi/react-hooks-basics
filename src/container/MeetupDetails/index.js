@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 import Heading from '../../components/Heading';
 import Spinner from '../../components/Spinner';
 import ItemUl from '../../components/ItemUl';
 import Button from '../../components/Button';
 import ButtonLink from '../../components/ButtonLink';
+import { getRequest } from '../../shared/utils/apiCalls';
 import { DARK_GREEN_2 } from '../../shared/string/meterialCls';
 import { EDIT_MEETUP_LINK } from '../../shared/string/menuLinks';
 
 const MeetupDetails = props => {
-  const [details, setDetails] = useState('');
+  const [details, setDetails] = useState({});
   const [loading, setLoading] = useState(false);
 
   const { id } = props.match.params;
@@ -29,14 +29,14 @@ const MeetupDetails = props => {
   //   return () => console.log('componentWillUnMount()');
   // });
 
-  const getMeetupDetails = () => {
-    axios
-      .get(`http://localhost:3000/api/meetups/${id}`)
-      .then(res => {
-        setDetails(res.data);
-        setLoading(false);
-      })
-      .catch(err => console.log(err));
+  const getMeetupDetails = async () => {
+    const res = await getRequest(`http://localhost:3000/api/meetups/${id}`);
+    if (res.error) {
+      setLoading(false);
+      return;
+    }
+    setLoading(false);
+    setDetails(res);
   };
 
   const renderButtons = () => (

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 import Heading from '../../components/Heading';
 import Spinner from '../../components/Spinner';
 import MeetupItems from '../../components/MeetupItems';
+import { getRequest } from '../../shared/utils/apiCalls';
 
 const Meetups = () => {
   const [meetups, setMeetups] = useState([]);
@@ -24,15 +24,15 @@ const Meetups = () => {
   //   return () => console.log('componentWillUnMount()');
   // });
 
-  const getMeetups = () => {
-    axios
-      .get('api/meetups')
-      .then(res => {
-        setMeetups([...res.data]);
-        setCount(res.data.length);
-        setLoading(false);
-      })
-      .catch(err => console.log(err));
+  const getMeetups = async () => {
+    const res = await getRequest('api/meetups');
+    if (res.error) {
+      setLoading(false);
+      return;
+    }
+    setLoading(false);
+    setMeetups([...res]);
+    setCount(res.length);
   };
 
   const renderMeetups = () => {
