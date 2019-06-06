@@ -39,12 +39,18 @@ const MeetupDetails = props => {
     setDetails(res);
   };
 
+  const onDeleteHandler = () => {
+    console.log('Delete');
+  };
+
   const renderButtons = () => (
     <div>
       <ButtonLink to={`${EDIT_MEETUP_LINK}/${id}`} cls={DARK_GREEN_2}>
         Edit
       </ButtonLink>
-      <Button cls={'red darken-2 right'}>Delete</Button>
+      <Button onClick={onDeleteHandler} cls={'red darken-2 right'}>
+        Delete
+      </Button>
     </div>
   );
 

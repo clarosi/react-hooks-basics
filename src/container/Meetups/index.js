@@ -25,7 +25,7 @@ const Meetups = () => {
   // });
 
   const getMeetups = async () => {
-    const res = await getRequest('api/meetups');
+    const res = await getRequest('http://localhost:3000/api/meetups');
     if (res.error) {
       setLoading(false);
       return;
