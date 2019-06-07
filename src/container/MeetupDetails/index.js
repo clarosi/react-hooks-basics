@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
-import Heading from '../../components/Heading';
-import Spinner from '../../components/Spinner';
-import ItemUl from '../../components/ItemUl';
-import Button from '../../components/Button';
-import ButtonLink from '../../components/ButtonLink';
-import { getRequest } from '../../shared/utils/apiCalls';
-import { DARK_GREEN_2 } from '../../shared/string/meterialCls';
-import { EDIT_MEETUP_LINK } from '../../shared/string/menuLinks';
+import {
+  Heading,
+  Button,
+  ButtonLink,
+  Spinner,
+  ItemUl
+} from '../../components/Common';
+import { getRequest } from '../../shared/utils';
+import { ROUTE_1, DARK_GREEN_2, EDIT_MEETUP_LINK } from '../../shared/string';
 
 const MeetupDetails = props => {
   const [details, setDetails] = useState({});
@@ -30,7 +31,7 @@ const MeetupDetails = props => {
   // });
 
   const getMeetupDetails = async () => {
-    const res = await getRequest(`http://localhost:3000/api/meetups/${id}`);
+    const res = await getRequest(`${ROUTE_1}/${id}`);
     if (res.error) {
       setLoading(false);
       return;

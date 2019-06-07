@@ -1,7 +1,6 @@
 import React from 'react';
 
-import Navbar from './components/Navbar';
-import FoatingButton from './components/FloatingButton';
+import { Navbar, FloatingButton } from './components/Common';
 import Main from './container/Main';
 
 import './App.css';
@@ -13,8 +12,8 @@ const App = () => {
       <Navbar />
       <div className="container">
         <Main />
-        <FoatingButton />
       </div>
+      <FloatingButton />
     </div>
   );
 };

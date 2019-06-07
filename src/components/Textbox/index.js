@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Textbox = props => {
+export const Textbox = props => {
   const { sN, txtId, clsLbl, clsTxt, lblText, value, onChange } = props;
   return (
     <div className={`input-field col ${sN || 's5'}`}>
@@ -18,4 +18,4 @@ const Textbox = props => {
   );
 };
 
-export default Textbox;
+//export default Textbox;

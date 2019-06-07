@@ -1,4 +1,4 @@
-const manageValidation = (key, value, controls) => {
+export const manageValidation = (key, value, controls) => {
   let connectedValue = {};
   if (controls[key].validationRules.equalTo) {
     const equalControl = controls[key].validationRules.equalTo;
@@ -16,5 +16,3 @@ const manageValidation = (key, value, controls) => {
   }
   return connectedValue;
 };
-
-export default manageValidation;

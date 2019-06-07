@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Button = props => {
+export const Button = props => {
   const { children, cls } = props;
   return (
     <button {...props} className={`btn waves-effect ${cls}`}>
@@ -9,4 +9,4 @@ const Button = props => {
   );
 };
 
-export default Button;
+//export default Button;

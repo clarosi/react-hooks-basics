@@ -6,12 +6,13 @@ import AddMeetups from '../AddMeetups';
 import MeetupDetails from '../MeetupDetails';
 import About from '../About';
 import NotFound from '../404';
+
 import {
   MEETUP_LINK,
   ADD_MEETUP_LINK,
   VIEW_MEETUP_LINK,
   ABOUT_LINK
-} from '../../shared/string/menuLinks';
+} from '../../shared/string';
 
 const Main = () => (
   <main>

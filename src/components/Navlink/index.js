@@ -1,7 +1,8 @@
 import React from 'react';
+
 import { Link } from 'react-router-dom';
 
-const Navlink = props => {
+export const Navlink = props => {
   const { to, cls, icon, text } = props;
   return (
     <Link to={to} className={cls}>
@@ -10,4 +11,4 @@ const Navlink = props => {
   );
 };
 
-export default Navlink;
+//export default Navlink;

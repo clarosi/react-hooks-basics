@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
 
-import Heading from '../../components/Heading';
-import Textbox from '../../components/Textbox';
-import Button from '../../components/Button';
-import Spinner from '../../components/Spinner';
-
-import validate from '../../shared/utils/validate';
-import manageValidation from '../../shared/utils/manageValidation';
-import { postRequest } from '../../shared/utils/apiCalls';
-import { DARK_GREEN_2 } from '../../shared/string/meterialCls';
-import { MEETUP_LINK } from '../../shared/string/menuLinks';
+import { Heading, Button, Spinner, Textbox } from '../../components/Common';
+import { validate, postRequest, manageValidation } from '../../shared/utils';
+import { ROUTE_1, DARK_GREEN_2, MEETUP_LINK } from '../../shared/string';
 
 const AddMeetups = props => {
   const [btnStatus, setBtnStatus] = useState('disabled');
@@ -49,7 +42,7 @@ const AddMeetups = props => {
   const isValid = (valid, touch) => (!valid && touch ? 'invalid' : null);
 
   const addMeetup = async data => {
-    const res = await postRequest('http://localhost:3000/api/meetups', data);
+    const res = await postRequest(ROUTE_1, data);
     if (res.error) {
       setLoading(false);
       return;

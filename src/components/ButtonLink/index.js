@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ButtonLink = props => {
+export const ButtonLink = props => {
   const { children, to, cls } = props;
   return (
     <Link to={to} className={`btn ${cls} waves-effect`} {...props}>
@@ -10,4 +10,4 @@ const ButtonLink = props => {
   );
 };
 
-export default ButtonLink;
+//export default ButtonLink;

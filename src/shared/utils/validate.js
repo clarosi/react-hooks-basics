@@ -8,7 +8,7 @@ const minLengthValidator = (value, minLength) =>
 
 const equalToValidator = (value, checkValue) => value === checkValue;
 
-const validate = (value, rules, connectedValue) => {
+export const validate = (value, rules, connectedValue) => {
   let isValid = true;
   for (const rule in rules) {
     switch (rule) {
@@ -31,5 +31,3 @@ const validate = (value, rules, connectedValue) => {
   }
   return isValid;
 };
-
-export default validate;

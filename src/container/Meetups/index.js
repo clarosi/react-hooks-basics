@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import Heading from '../../components/Heading';
-import Spinner from '../../components/Spinner';
-import MeetupItems from '../../components/MeetupItems';
-import { getRequest } from '../../shared/utils/apiCalls';
+import { Heading, Spinner, MeetupItems } from '../../components/Common';
+import { getRequest } from '../../shared/utils';
+import { ROUTE_1 } from '../../shared/string';
 
 const Meetups = () => {
   const [meetups, setMeetups] = useState([]);
@@ -25,7 +24,7 @@ const Meetups = () => {
   // });
 
   const getMeetups = async () => {
-    const res = await getRequest('http://localhost:3000/api/meetups');
+    const res = await getRequest(ROUTE_1);
     if (res.error) {
       setLoading(false);
       return;

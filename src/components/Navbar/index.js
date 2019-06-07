@@ -1,20 +1,20 @@
 import React from 'react';
 
-import Navlink from '../Navlink';
-import { DARK_GREEN_2 } from '../../shared/string/meterialCls';
-import { MEETUP, ADD_MEETUP, ABOUT } from '../../shared/string/menuText';
+import { Navlink } from '../Common';
 import {
+  DARK_GREEN_2,
+  MEETUP,
+  ADD_MEETUP,
+  ABOUT,
   MEETUP_ICON,
   ADD_MEETUP_ICON,
-  ABOUT_ICON
-} from '../../shared/string/iconsNames';
-import {
+  ABOUT_ICON,
   MEETUP_LINK,
   ADD_MEETUP_LINK,
   ABOUT_LINK
-} from '../../shared/string/menuLinks';
+} from '../../shared/string';
 
-const Navbar = () => {
+export const Navbar = () => {
   return (
     <div>
       <nav className={DARK_GREEN_2}>
@@ -63,4 +63,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+//export default Navbar;

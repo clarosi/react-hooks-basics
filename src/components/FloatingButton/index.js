@@ -1,23 +1,22 @@
 import React from 'react';
 
-import Navlink from '../Navlink';
-import ButtonLink from '../ButtonLink';
-import { DARK_GREEN_2 } from '../../shared/string/meterialCls';
-import { MEETUP, ADD_MEETUP, ABOUT } from '../../shared/string/menuText';
+import { Navlink, ButtonLink } from '../Common';
 import {
+  DARK_GREEN_2,
+  MEETUP,
+  ADD_MEETUP,
+  ABOUT,
   MEETUP_ICON,
   ADD_MEETUP_ICON,
-  ABOUT_ICON
-} from '../../shared/string/iconsNames';
-import {
+  ABOUT_ICON,
   MEETUP_LINK,
   ADD_MEETUP_LINK,
   ABOUT_LINK
-} from '../../shared/string/menuLinks';
+} from '../../shared/string';
 
 const BUTTON_CLS = 'btn-floating';
 
-const FloatingButton = () => {
+export const FloatingButton = () => {
   return (
     <div className="fixed-action-btn">
       <ButtonLink
@@ -56,4 +55,4 @@ const FloatingButton = () => {
   );
 };
 
-export default FloatingButton;
+//export default FloatingButton;

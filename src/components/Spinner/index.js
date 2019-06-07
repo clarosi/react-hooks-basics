@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Spinner = props => {
+export const Spinner = props => {
   const { size, color } = props;
   return (
     <div className={`preloader-wrapper ${size || 'small'} active`}>
@@ -18,4 +18,5 @@ const Spinner = props => {
     </div>
   );
 };
-export default Spinner;
+
+//export default Spinner;
