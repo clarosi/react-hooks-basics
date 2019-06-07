@@ -8,7 +8,7 @@ import {
   ItemUl,
   Modals
 } from '../../components/Common';
-import { getRequest } from '../../shared/utils';
+import { getRequest, postRequest } from '../../shared/utils';
 import {
   ROUTE_1,
   DARK_GREEN_2,
@@ -21,14 +21,13 @@ const MeetupDetails = props => {
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const modalId = 'myModal';
   const { id } = props.match.params;
 
   // This is componentDidMount() or componentDidUpdate() in class component.
   // Only re-run the useEffect if details changes and you pass [details] as second params.
   useEffect(() => {
     setLoading(true);
-    getMeetupDetails();
+    getMeetup();
     // console.log('componentDidMount()');
   }, []);
 
@@ -38,20 +37,24 @@ const MeetupDetails = props => {
   //   return () => console.log('componentWillUnMount()');
   // });
 
-  const getMeetupDetails = async () => {
+  const getMeetup = async () => {
     const res = await getRequest(`${ROUTE_1}/${id}`);
-    if (res.error) {
-      setLoading(false);
-      return;
-    }
+    if (res.error) return setLoading(false);
     setLoading(false);
     setDetails(res);
+  };
+
+  const deleteMeetup = async () => {
+    const res = await postRequest(`${ROUTE_1}/${id}`, {}, 'DELETE');
+    if (res.error) return setLoading(false);
+    setLoading(false);
+    props.history.push(MEETUP_LINK);
   };
 
   const onDeleteHandler = () => {
     setLoading(true);
     setShowModal(false);
-    props.history.push(MEETUP_LINK);
+    deleteMeetup();
   };
 
   const onToggleHandler = () => {
@@ -63,7 +66,6 @@ const MeetupDetails = props => {
       <Button
         onClick={onToggleHandler}
         cls={'red darken-2 modal-trigger right'}
-        data-target={modalId}
       >
         Delete
       </Button>
@@ -101,13 +103,10 @@ const MeetupDetails = props => {
     <Modals isOpen={showModal}>
       <h5>Delete {details.name}?</h5>
       <div className="modal-footer">
-        <Button
-          onClick={onToggleHandler}
-          cls={`${DARK_GREEN_2} modal-close mr-3`}
-        >
+        <Button onClick={onToggleHandler} cls={`${DARK_GREEN_2} mr-3`}>
           Cancel
         </Button>
-        <Button onClick={onDeleteHandler} cls={'modal-close red darken-2'}>
+        <Button onClick={onDeleteHandler} cls={'red darken-2'}>
           Delete
         </Button>
       </div>

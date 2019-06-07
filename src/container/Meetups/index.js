@@ -23,14 +23,12 @@ const Meetups = () => {
   //   return () => console.log('componentWillUnMount()');
   // });
 
+  // ?filter[order]=createdAt&DESC
   const getMeetups = async () => {
     const res = await getRequest(ROUTE_1);
-    if (res.error) {
-      setLoading(false);
-      return;
-    }
+    if (res.error) setLoading(false);
     setLoading(false);
-    setMeetups([...res]);
+    setMeetups([...res].reverse());
     setCount(res.length);
   };
 

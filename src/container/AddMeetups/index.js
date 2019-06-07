@@ -59,10 +59,7 @@ const AddMeetups = props => {
 
   const addMeetup = async data => {
     const res = await postRequest(ROUTE_1, data);
-    if (res.error) {
-      setLoading(false);
-      return;
-    }
+    if (res.error) setLoading(false);
     setLoading(false);
     props.history.push(MEETUP_LINK);
   };
