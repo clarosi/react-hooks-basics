@@ -2,7 +2,14 @@ import React, { useState } from 'react';
 
 import { Heading, Button, Spinner, Textbox } from '../../components/Common';
 import { validate, postRequest, manageValidation } from '../../shared/utils';
-import { ROUTE_1, DARK_GREEN_2, MEETUP_LINK } from '../../shared/string';
+import {
+  ROUTE_1,
+  DARK_GREEN_2,
+  MEETUP_LINK,
+  EDIT_ICON,
+  TIMES_ICON,
+  CHECK_ICON
+} from '../../shared/string';
 
 const AddMeetups = props => {
   const [btnStatus, setBtnStatus] = useState('disabled');
@@ -39,7 +46,16 @@ const AddMeetups = props => {
 
   const { name, address, city } = controls;
 
-  const isValid = (valid, touch) => (!valid && touch ? 'invalid' : null);
+  const getClassName = control => {
+    const { valid, touch } = control;
+    return !valid && touch ? 'invalid' : null;
+  };
+  const getIconName = control => {
+    const { valid, touch } = control;
+    if (!valid && !touch) return EDIT_ICON;
+    if (!valid && touch) return TIMES_ICON;
+    return CHECK_ICON;
+  };
 
   const addMeetup = async data => {
     const res = await postRequest(ROUTE_1, data);
@@ -95,12 +111,13 @@ const AddMeetups = props => {
   return (
     <div>
       <Heading>Add Meetups</Heading>
-      <form>
+      <form autoComplete="off">
         <div className="row">
           <Textbox
             txtId={'name'}
             lblText={'Name'}
-            clsTxt={isValid(name.valid, name.touch)}
+            icon={getIconName(name)}
+            clsTxt={getClassName(name)}
             sN={'s6'}
             value={name.value}
             onChange={e => onChangeHandler(e)}
@@ -110,7 +127,8 @@ const AddMeetups = props => {
           <Textbox
             txtId={'address'}
             lblText={'Address'}
-            clsTxt={isValid(address.valid, address.touch)}
+            icon={getIconName(address)}
+            clsTxt={getClassName(address)}
             sN={'s6'}
             value={address.value}
             onChange={e => onChangeHandler(e)}
@@ -120,7 +138,8 @@ const AddMeetups = props => {
           <Textbox
             txtId={'city'}
             lblText={'City'}
-            clsTxt={isValid(city.valid, city.touch)}
+            icon={getIconName(city)}
+            clsTxt={getClassName(city)}
             sN={'s6'}
             value={city.value}
             onChange={e => onChangeHandler(e)}

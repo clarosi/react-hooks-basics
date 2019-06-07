@@ -5,15 +5,23 @@ import {
   Button,
   ButtonLink,
   Spinner,
-  ItemUl
+  ItemUl,
+  Modals
 } from '../../components/Common';
 import { getRequest } from '../../shared/utils';
-import { ROUTE_1, DARK_GREEN_2, EDIT_MEETUP_LINK } from '../../shared/string';
+import {
+  ROUTE_1,
+  DARK_GREEN_2,
+  EDIT_MEETUP_LINK,
+  MEETUP_LINK
+} from '../../shared/string';
 
 const MeetupDetails = props => {
   const [details, setDetails] = useState({});
+  const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const modalId = 'myModal';
   const { id } = props.match.params;
 
   // This is componentDidMount() or componentDidUpdate() in class component.
@@ -41,17 +49,30 @@ const MeetupDetails = props => {
   };
 
   const onDeleteHandler = () => {
-    console.log('Delete');
+    setLoading(true);
+    setShowModal(false);
+    props.history.push(MEETUP_LINK);
+  };
+
+  const onToggleHandler = () => {
+    setShowModal(!showModal);
   };
 
   const renderButtons = () => (
     <div>
-      <ButtonLink to={`${EDIT_MEETUP_LINK}/${id}`} cls={DARK_GREEN_2}>
-        Edit
-      </ButtonLink>
-      <Button onClick={onDeleteHandler} cls={'red darken-2 right'}>
+      <Button
+        onClick={onToggleHandler}
+        cls={'red darken-2 modal-trigger right'}
+        data-target={modalId}
+      >
         Delete
       </Button>
+      <ButtonLink
+        to={`${EDIT_MEETUP_LINK}/${id}`}
+        cls={`${DARK_GREEN_2} mr-3 right`}
+      >
+        Edit
+      </ButtonLink>
     </div>
   );
 
@@ -76,10 +97,28 @@ const MeetupDetails = props => {
     );
   };
 
+  const renderModal = () => (
+    <Modals isOpen={showModal}>
+      <h5>Delete {details.name}?</h5>
+      <div className="modal-footer">
+        <Button
+          onClick={onToggleHandler}
+          cls={`${DARK_GREEN_2} modal-close mr-3`}
+        >
+          Cancel
+        </Button>
+        <Button onClick={onDeleteHandler} cls={'modal-close red darken-2'}>
+          Delete
+        </Button>
+      </div>
+    </Modals>
+  );
+
   return (
     <div>
       <Heading>Meetup Details</Heading>
       {renderDetails()}
+      {renderModal()}
     </div>
   );
 };

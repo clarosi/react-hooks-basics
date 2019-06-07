@@ -8,3 +8,4 @@ export * from '../MeetupItems';
 export * from '../Navbar';
 export * from '../Navlink';
 export * from '../FloatingButton';
+export * from '../Modal';
